@@ -18,6 +18,8 @@ Add Business Logic Layer for employee
 
 Implement DisplayManagementTree in Program.cs and update the main to call it
 
+Update Program.cs to use Dependency Injection
+
 ## Further Improvements I Would Make If I Had More Time (in order of implementation, highest priority first)
 
 implement proper dependency injection, use a proper third-party IOC container
