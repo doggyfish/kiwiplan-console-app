@@ -1,10 +1,16 @@
 using Kiwiplan.BusinessLogic.Interfaces;
+using Kiwiplan.Infrastructure.Interfaces;
 using Kiwiplan.Models;
 
 namespace Kiwiplan.BusinessLogic;
 
-public class BrEmployee : BrBase, IBrEmployee
+public sealed class BrEmployee : BrBase, IBrEmployee
 {
+    private readonly ILogger _logger;
+    public BrEmployee(ILogger logger)
+    {
+        _logger = logger;
+    }
     public List<Employee> GetAll()
     {
         var employees = new List<Employee>();
@@ -25,7 +31,8 @@ public class BrEmployee : BrBase, IBrEmployee
         List<Employee> employeeGroup = employees.Where(x => x.ManagerId  == managerId).OrderBy(s => s.Name).ToList();
         foreach (Employee employee in employeeGroup)
         {
-            Console.WriteLine("{0}{1}", "->".Repeat(managementLevel), employee.Name);
+            string logs = String.Format("{0}{1}", "->".Repeat(managementLevel), employee.Name);
+            _logger.Log(logs);
             DisplayHierarchyTree(employees, employee.EmployeeId, managementLevel+1);
         }
     }

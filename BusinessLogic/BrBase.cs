@@ -1,5 +1,5 @@
 namespace Kiwiplan.BusinessLogic;
 
-public class BrBase
+public abstract class BrBase
 {
 }
